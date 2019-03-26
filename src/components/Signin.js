@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { isUserSignedIn } from 'blockstack';
+import 'react-bulma-components/dist/react-bulma-components.min.css';
+import {Navbar} from 'react-bulma-components';
+
 
 export default class Signin extends Component {
   constructor(props) {
@@ -10,18 +13,14 @@ export default class Signin extends Component {
     const { handleSignIn } = this.props;
 
     return (
-      <div className="panel-landing" id="section-1">
-        <h1 className="landing-heading">Hello, Blockstack!</h1>
-        <p className="lead">
-          <button
-            className="btn btn-primary btn-lg"
-            id="signin-button"
-            onClick={ handleSignIn.bind(this) }
-          >
+      <React.Fragment>
+        <Navbar.Item  onClick={ handleSignIn.bind(this) }>
+       
             Sign In with Blockstack
-          </button>
-        </p>
-      </div>
+          
+          </Navbar.Item>
+        </React.Fragment>
+        
     );
   }
 }

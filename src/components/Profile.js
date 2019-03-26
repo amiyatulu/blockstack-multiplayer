@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import 'react-bulma-components/dist/react-bulma-components.min.css';
+import {Navbar} from 'react-bulma-components';
 import {
   isSignInPending,
   loadUserData,
@@ -24,25 +26,20 @@ export default class Profile extends Component {
   }
 
   render() {
+    console.log(this.props, 'in profile');
     const { handleSignOut } = this.props;
+    console.log(handleSignOut,'in profile3');
     const { person } = this.state;
     return (
+      
       !isSignInPending() ?
-      <div className="panel-welcome" id="section-2">
-        <div className="avatar-section">
-          <img src={ person.avatarUrl() ? person.avatarUrl() : avatarFallbackImage } className="img-rounded avatar" id="avatar-image" />
-        </div>
-        <h1>Hello, <span id="heading-name">{ person.name() ? person.name() : 'Nameless Person' }</span>!</h1>
-        <p className="lead">
-          <button
-            className="btn btn-primary btn-lg"
-            id="signout-button"
-            onClick={ handleSignOut.bind(this) }
-          >
-            Logout
-          </button>
-        </p>
-      </div> : null
+      <React.Fragment>
+      <Navbar.Item><img src={ person.avatarUrl() ? person.avatarUrl() : avatarFallbackImage } alt="myimage" /></Navbar.Item>
+      <Navbar.Item>{ person.name() ? person.name() : 'Nameless Person' }</Navbar.Item>
+      <Navbar.Item onClick={ handleSignOut.bind(this)} >
+            Logout </Navbar.Item>
+       
+        </React.Fragment>: null
     );
   }
 

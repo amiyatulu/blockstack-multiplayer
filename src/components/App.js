@@ -1,6 +1,10 @@
 import React, { Component, Link } from 'react';
 import Profile from './Profile';
 import Signin from './Signin';
+import 'react-bulma-components/dist/react-bulma-components.min.css';
+import {Navbar} from 'react-bulma-components';
+
+
 import {
   isSignInPending,
   isUserSignedIn,
@@ -26,15 +30,23 @@ export default class App extends Component {
   }
 
   render() {
+    console.log(this.handleSignOut,'in App.js');
     return (
-      <div className="site-wrapper">
-        <div className="site-wrapper-inner">
-          { !isUserSignedIn() ?
+      <React.Fragment>
+         <Navbar color="primary">
+            <Navbar.Brand>
+                <Navbar.Item>Avrit</Navbar.Item>
+            </Navbar.Brand>
+            <Navbar.Menu>
+                <Navbar.Container>
+                { !isUserSignedIn() ?
             <Signin handleSignIn={ this.handleSignIn } />
             : <Profile handleSignOut={ this.handleSignOut } />
           }
-        </div>
-      </div>
+                </Navbar.Container>            
+            </Navbar.Menu>
+        </Navbar>
+      </React.Fragment>
     );
   }
 
