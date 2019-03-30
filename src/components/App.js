@@ -1,8 +1,9 @@
-import React, { Component, Link } from 'react';
+import React, { Component} from 'react';
 import Profile from './Profile';
 import Signin from './Signin';
-import 'react-bulma-components/dist/react-bulma-components.min.css';
-import {Navbar} from 'react-bulma-components';
+import Content from './Content/Content';
+import {Navbar, Nav} from 'react-bootstrap';
+import Styles from './App.module.css';
 
 
 import {
@@ -33,19 +34,26 @@ export default class App extends Component {
     console.log(this.handleSignOut,'in App.js');
     return (
       <React.Fragment>
-         <Navbar color="primary">
-            <Navbar.Brand>
-                <Navbar.Item>Avrit</Navbar.Item>
-            </Navbar.Brand>
-            <Navbar.Menu>
-                <Navbar.Container>
-                { !isUserSignedIn() ?
+        <Navbar  collapseOnSelect expand="lg" bg="dark" variant="dark">
+  <Navbar.Brand href="#home">Avrit</Navbar.Brand>
+  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+  <Navbar.Collapse id="responsive-navbar-nav">
+    <Nav className="mr-auto">
+    
+      <Nav.Link href="#features">Features</Nav.Link>
+      
+    
+    </Nav>
+    <Nav>
+    { !isUserSignedIn() ?
             <Signin handleSignIn={ this.handleSignIn } />
             : <Profile handleSignOut={ this.handleSignOut } />
           }
-                </Navbar.Container>            
-            </Navbar.Menu>
-        </Navbar>
+    </Nav>
+  </Navbar.Collapse>
+</Navbar>
+  { isUserSignedIn() ?  <Content/> : null }
+       
       </React.Fragment>
     );
   }

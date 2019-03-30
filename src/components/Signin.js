@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { isUserSignedIn } from 'blockstack';
-import 'react-bulma-components/dist/react-bulma-components.min.css';
-import {Navbar} from 'react-bulma-components';
+import {Nav} from 'react-bootstrap';
+
 
 
 export default class Signin extends Component {
@@ -14,11 +14,11 @@ export default class Signin extends Component {
 
     return (
       <React.Fragment>
-        <Navbar.Item  onClick={ handleSignIn.bind(this) }>
+        <Nav.Link  onClick={ handleSignIn.bind(this) }>
        
             Sign In with Blockstack
           
-          </Navbar.Item>
+          </Nav.Link>
         </React.Fragment>
         
     );

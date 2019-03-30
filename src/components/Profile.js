@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import 'react-bulma-components/dist/react-bulma-components.min.css';
-import {Navbar} from 'react-bulma-components';
+import {Nav} from 'react-bootstrap';
 import {
   isSignInPending,
   loadUserData,
@@ -21,7 +20,7 @@ export default class Profile extends Component {
   	  	avatarUrl() {
   	  	  return avatarFallbackImage;
   	  	},
-  	  },
+      },
   	};
   }
 
@@ -32,12 +31,12 @@ export default class Profile extends Component {
     const { person } = this.state;
     return (
       
-      !isSignInPending() ?
+      !isSignInPending() && person ?
       <React.Fragment>
-      <Navbar.Item><img src={ person.avatarUrl() ? person.avatarUrl() : avatarFallbackImage } alt="myimage" /></Navbar.Item>
-      <Navbar.Item>{ person.name() ? person.name() : 'Nameless Person' }</Navbar.Item>
-      <Navbar.Item onClick={ handleSignOut.bind(this)} >
-            Logout </Navbar.Item>
+      <Nav.Link onClick={ handleSignOut.bind(this)} ><img src={ person.avatarUrl() ? person.avatarUrl() : avatarFallbackImage }  height="30px" alt="myimage" /> &nbsp;&nbsp;
+      { person.name() ? person.name() : 'Nameless Person' }&nbsp;&nbsp;
+      
+            Logout </Nav.Link>
        
         </React.Fragment>: null
     );
