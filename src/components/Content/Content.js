@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 import {Button, Alert} from 'react-bootstrap';
 
 import {
-  isSignInPending,
   loadUserData,
   Person,
   putFile,
   getFile,
-  lookupProfile
 } from 'blockstack';
 
 const avatarFallbackImage = 'https://s3.amazonaws.com/onename/avatar-placeholder.png';
@@ -47,9 +45,10 @@ class Content extends Component {
 
       saveNewStatus(statusText) {
         let statuses = this.state.statuses
+        let index = this.state.statusIndex
      
         let status = {
-          id: this.state.statusIndex++,
+          id: index++,
           text: statusText.trim(),
           created_at: Date.now()
         }
@@ -96,8 +95,6 @@ class Content extends Component {
     
 
     render() {
-        const { person } = this.state;
-        const { username } = this.state;
  
         return (
         

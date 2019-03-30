@@ -2,8 +2,9 @@ import React, { Component} from 'react';
 import Profile from './Profile';
 import Signin from './Signin';
 import Content from './Content/Content';
+import OpenContent from './OpenContent/OpenContent';
 import {Navbar, Nav} from 'react-bootstrap';
-import Styles from './App.module.css';
+import {Switch, Route } from 'react-router-dom';
 
 
 import {
@@ -16,10 +17,6 @@ import {
 
 export default class App extends Component {
 
-  constructor(props) {
-  	super(props);
-  }
-
   handleSignIn(e) {
     e.preventDefault();
     redirectToSignIn();
@@ -31,7 +28,6 @@ export default class App extends Component {
   }
 
   render() {
-    console.log(this.handleSignOut,'in App.js');
     return (
       <React.Fragment>
         <Navbar  collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -46,13 +42,19 @@ export default class App extends Component {
     </Nav>
     <Nav>
     { !isUserSignedIn() ?
-            <Signin handleSignIn={ this.handleSignIn } />
-            : <Profile handleSignOut={ this.handleSignOut } />
+            <Signin handleSignIn={ this.handleSignIn }  />
+            :  <Profile handleSignOut={ this.handleSignOut } />
+        
+            
           }
     </Nav>
   </Navbar.Collapse>
 </Navbar>
-  { isUserSignedIn() ?  <Content/> : null }
+  { isUserSignedIn() ?  <Switch>
+    <Route path="/" exact component={Content} />
+    <Route path='/:username?' render={
+    routerProps => <OpenContent {...routerProps} />
+  }></Route></Switch> : null }
        
       </React.Fragment>
     );

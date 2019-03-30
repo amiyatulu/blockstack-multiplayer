@@ -25,9 +25,7 @@ export default class Profile extends Component {
   }
 
   render() {
-    console.log(this.props, 'in profile');
     const { handleSignOut } = this.props;
-    console.log(handleSignOut,'in profile3');
     const { person } = this.state;
     return (
       
